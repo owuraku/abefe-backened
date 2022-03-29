@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsPositive, IsString } from 'class-validator';
+import { IsOptional, IsPositive, IsString } from 'class-validator';
 
 export class UpdateStockDto {
   @ApiProperty({ description: 'Describe reason for update' })
@@ -11,4 +11,19 @@ export class UpdateStockDto {
   })
   @IsPositive()
   readonly updateNumber: number;
+
+  // @IsOptional()
+  // readonly balanceBefore?: number;
+
+  // @IsOptional()
+  // readonly balanceAfter?: number;
+
+  // @IsOptional()
+  // readonly product?: string;
+
+  // @IsOptional()
+  // readonly createdBy?: number;
+
+  // @IsOptional()
+  // readonly createdAt?: string;
 }
