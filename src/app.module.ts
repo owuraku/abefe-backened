@@ -1,3 +1,4 @@
+import { SalesRecordModule } from './sales-record/sales-record.module';
 import { StockModule } from './stock/stock.module';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
@@ -13,6 +14,7 @@ import { ProductsModule } from './products/products.module';
 
 @Module({
   imports: [
+    SalesRecordModule,
     StockModule,
     ConfigModule.forRoot({
       validationSchema: ENV_FILE_VALIDATOR,
@@ -29,9 +31,6 @@ import { ProductsModule } from './products/products.module';
       port: +process.env.DATABASE_PORT,
       autoLoadEntities: true,
       synchronize: true,
-      ssl: {
-        rejectUnauthorized: false,
-      },
       cache: {
         duration: 60000, // 1 minute
       },
