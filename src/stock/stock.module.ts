@@ -6,6 +6,7 @@ import { StockService } from './stock.service';
 @Module({
   imports: [TypeOrmModule.forFeature([Stock])],
   controllers: [],
+  exports: [StockService],
   providers: [StockService],
 })
 export class StockModule {}

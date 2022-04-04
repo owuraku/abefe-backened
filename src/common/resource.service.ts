@@ -58,12 +58,10 @@ export class ResourcesService {
 
   async search(queries: { [key: string]: string } | any) {
     const builder = this.resourceRepository.createQueryBuilder();
-    // const fields = this.resourceRepository.
 
     for (const key in queries) {
-      // differentiate between search values and search type
       const isSearchValue = !key.includes('_');
-      const element = queries[key];
+      const value = queries[key];
       if (isSearchValue) {
         const likeSearch =
           (queries[`${key}_search`] as searchTerms) == searchTerms.like;
@@ -71,7 +69,7 @@ export class ResourcesService {
           ? `${key} ilike :${key}`
           : `${key} =:${key}`;
 
-        const searchValue = likeSearch ? `%${element.toLowerCase()}%` : element;
+        const searchValue = likeSearch ? `%${value.toLowerCase()}%` : value;
         builder.andWhere(searchTerm, { [key]: searchValue });
       }
     }
