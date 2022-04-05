@@ -29,9 +29,12 @@ import { ProductsModule } from './products/products.module';
       port: +process.env.DATABASE_PORT,
       autoLoadEntities: true,
       synchronize: true,
-      ssl: {
-        rejectUnauthorized: false,
-      },
+      ssl:
+        process.env.ENV === 'development'
+          ? undefined
+          : {
+              rejectUnauthorized: false,
+            },
       cache: {
         duration: 60000, // 1 minute
       },
