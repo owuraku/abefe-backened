@@ -30,7 +30,7 @@ async function bootstrap() {
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
 
   app.useGlobalFilters(new HttpExceptionsFilter());
-
+  app.enableCors();
   await app.listen(process.env.PORT || 3000);
 }
 bootstrap();
